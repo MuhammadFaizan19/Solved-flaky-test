@@ -21,6 +21,11 @@ describe('Sign Up', () => {
 
     cy.get('input[type="submit"]')
       .click()
+    //Save-People had a setTimout which was not fixed, so the test passed sometimes and failed, since this
+    //is not an API call that can be intercepted, just added a simple wait.
+    
+    //Would love to know if there was any other way to solve this.  
+    cy.wait(2000)
 
     cy.get('li')
       .should('contain', 'Some Name - some@email.com - core - git-it')
